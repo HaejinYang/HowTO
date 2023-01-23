@@ -1,0 +1,27 @@
+*,
+*:after,
+:before {
+    box-sizing: border-box;
+}
+
+.page {
+    display: flex;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    flex-flow: column wrap;
+    background-color: #ddd;
+    height: 100%;
+    flex-grow: 1;
+}
+
+nav * {
+    margin: 10px;
+}
+
+main {
+    background-color: #eee;
+    flex-grow: 10;
+}
