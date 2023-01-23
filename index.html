@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+        <nav>
+            <h3>Menu</h3>
+            <a data-id="flip">flip</a>
+            <a data-id="carousel">carousel</a>
+            <a data-id="temp1">temp1</a>
+            <a data-id="temp2">temp2</a>
+        </nav>
+        <main>
+        </main>
+    </div>
+
+    <script type="text/javascript">
+        document.querySelector('nav').addEventListener('click', (e)=>{
+            const main = document.querySelector('main');
+            while(main.firstChild) {
+                main.firstChild.remove();
+            }
+
+            console.log(`${e.target.dataset.id}.html`);
+            const elem = document.createElement('object');
+            elem.setAttribute('data', `${e.target.dataset.id}.html`);
+
+            main.append(elem);
+        });
+    </script>
+</body>
+</html>
