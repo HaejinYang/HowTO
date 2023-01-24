@@ -1,0 +1,65 @@
+:root {
+    --global-padding-left: 5%;
+    --global-padding-right: 5%;
+
+}
+h2 {
+    background-color: #ccc;
+}
+
+.img-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.img-container img {
+    width: 30%;
+    object-fit: contain;
+    border: 2px solid #999;
+}
+
+.practice-page nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+}
+
+.practice-page nav ul {
+    display: flex;
+    justify-content: start;
+    padding-left: var(--global-padding-left);
+    padding-right: var(--global-padding-right);
+}
+
+.practice-page nav ul li {
+    list-style: none;
+    color: white;
+    font-size: 32px;
+    padding: 20px 20px 20px 0px;
+}
+
+.practice-page nav ul li:hover {
+    cursor: pointer;
+    background-color: #111;
+}
+
+.practice-page .carousel {
+    background-color: orange;
+    height: 200px;
+}
+
+.practice-page .content {
+    padding-left: var(--global-padding-left);
+    background-color: #333;
+    height: 200px;
+    color: white;
+    font-size: 32px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.practice-page .carousel {
+    font-size: 32px;
+    color: white;
+}
