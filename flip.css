@@ -11,6 +11,13 @@
     transition: transform 0.8s;
     transform-style: preserve-3d; /*이 속성이 붙은 컨테이너는 자식 컨테이너를 3d 평면으로 만든다. 앞, 뒤, 우, 좌, 위, 아래*/
 }
+
+/*
+flip-content:hover 단독으로 쓰면, flip-content가 회전하면서 flip-contet의 범위로부터 마우스가 벗어나게 된다.
+그 결과, hover 이벤트가 취소되어 회전하던 flip-contnet가 다시 돌아온다.
+돌아올 때 다시 마우스를 만나서 hover 이벤트가 발생한다.
+이 과정이 계속 반복되진 않지만, 원하던 동작은 아니다.
+*/
 .flip-container:hover .flip-content {
     transform: rotateY(180deg);
 }
