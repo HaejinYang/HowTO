@@ -1,8 +1,8 @@
 :root {
     --global-padding-left: 5%;
     --global-padding-right: 5%;
-
 }
+
 h2 {
     background-color: #ccc;
 }
@@ -44,8 +44,7 @@ h2 {
 }
 
 .practice-page .carousel {
-    background-color: orange;
-    height: 200px;
+    background-color: orangered;
 }
 
 .practice-page .content {
@@ -62,4 +61,5 @@ h2 {
 .practice-page .carousel {
     font-size: 32px;
     color: white;
+    padding: 20px;
 }
