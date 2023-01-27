@@ -1,26 +1,27 @@
-*,
-*:after,
-:before {
-    box-sizing: border-box;
-    margin: 0px;
-}
-
 .page {
     display: flex;
 }
 
-nav {
+.page nav {
     position: relative;
     display: flex;
     flex-flow: column wrap;
-    background-color: #ddd;
+    background-color: #333;
     height: 100vh;
+    color: white;
     flex-grow: 1;
 }
 
-nav * {
-    margin: 10px;
+.page nav a{
+    padding: 20px;
+    cursor: pointer;
+    font-size: 20px;
 }
+
+.page nav a:hover{
+    background-color: #111;
+}
+
 
 main {
     position: relative;
