@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>탄도학</title>
+    <style>
+        :root {
+            --main-color: gold;
+            --text-color: orangered;
+        }
+
+        canvas {
+            border: 1px orangered dotted;
+        }
+
+        .input-field {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-form {
+            width: 500px;
+        }
+
+        .input-submit {
+            padding: 10px;
+            width: 200px;
+            background-color: var(--main-color);
+            border: 0px;
+            border-radius: 5px;
+            color: var(--text-color);
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
+        }
+
+        .input-submit:hover {
+            filter: brightness(80%);
+        }
+
+        .input-submit:active {
+            filter: brightness(80%);
+            box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
+            position: relative;
+            top:2px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="탄도학" width="500" height="500">
+    캔버스 지원을 안해줍니다 T^T
+</canvas>
+<form id="input-form" class="input-form">
+    <div class="input-wrapper">
+        <div>
+            <div class="input-field">
+                <label for="velocity">속력(m/s)</label>
+                <input type="text" id="velocity" placeholder="e.g 30" value="30">
+            </div>
+            <div class="input-field">
+                <label for="angle">각도(degree)</label>
+                <input type="text" id="angle" placeholder="e.g 10.5" value="60">
+            </div>
+            <div class="input-field">
+                <label for="resistance">저항(N)</label>
+                <input type="text" id="resistance" placeholder="e.g 1" value="0.01">
+            </div>
+        </div>
+        <input type="submit" value="시작!" class="input-submit">
+    </div>
+</form>
+
+<script>
+    const canvas = document.getElementById('탄도학');
+    const ctx = canvas.getContext('2d');
+    const PI = 3.14159265;
+    const G = 9.8;
+    const SCALE = 10.0;
+
+    document.querySelector('#input-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        ctx.fillStyle = "rgba(255, 255, 255, 0)";
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        let velocity = document.querySelector('#velocity').value;
+        const angle = document.querySelector('#angle').value;
+        const resistance = document.querySelector('#resistance').value;
+        const theta = angle * PI / 180;
+        const t = 2 * velocity * Math.sin(theta) / G;
+        const max_y = (velocity ** 2) * (Math.sin(theta) ** 2) / (2 * G);
+        let i = 0;
+        console.log("start interval");
+        const interval = setInterval(() => {
+            i += 0.01;
+            if (i > t) {
+                console.log("stop interval");
+                clearInterval(interval);
+            }
+
+            const x = velocity * Math.cos(theta) * i;
+            const y = velocity * Math.sin(theta) * i - 0.5 * G * (i ** 2);
+
+            velocity = velocity - resistance * i / velocity;
+
+            const yPos = Math.abs(Math.round(max_y - y));
+            if (yPos > max_y) {
+                return;
+            }
+            const xPos = Math.abs(Math.round(x / 2));
+
+            ctx.fillStyle = "#00bfff";
+            ctx.fillRect(xPos * SCALE, yPos * SCALE, SCALE, SCALE);
+        }, 0);
+    });
+</script>
+</body>
+</html>
