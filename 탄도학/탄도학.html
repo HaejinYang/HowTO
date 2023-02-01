@@ -77,11 +77,34 @@
 </form>
 
 <script>
+    const GetValue = (id) => {document.querySelector(`#${id}`).value};
+    const GetVelocity = () => {GetValue('velocity')};
+    const GetVelocity2 = () => {document.querySelector(`#velocity`).value};
+    const GetVelocity3 = () => {document.querySelector(`#velocity`)};
+    console.log(GetVelocity3());
+    setInterval(() => {
+        const v = GetVelocity();
+        console.log("v : ", v);
+        const v2 = document.querySelector(`#velocity`).value;
+        console.log("v2 : ", v2);
+
+    }, 1000);
+
     const canvas = document.getElementById('탄도학');
     const ctx = canvas.getContext('2d');
     const PI = 3.14159265;
     const G = 9.8;
     const SCALE = 10.0;
+
+    const DrawInfo = (v, h, d) => {
+        ctx.clearRect(0, 0, 70, 70);
+        ctx.fillStyle = 'gold';
+        ctx.fillRect(0, 0, 70, 70);
+        ctx.fillStyle = 'orangered';
+        ctx.fillText(`속도 : ${v.toFixed(1)} m/s`, 0, 14);
+        ctx.fillText(`높이 : ${h.toFixed(1)} m`, 0, 28);
+        ctx.fillText(`거리 : ${d.toFixed(1)} m`, 0, 42);
+    }
 
     document.querySelector('#input-form').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -114,6 +137,7 @@
             }
             const xPos = Math.abs(Math.round(x / 2));
 
+            DrawInfo(velocity, y, xPos);
             ctx.fillStyle = "#00bfff";
             ctx.fillRect(xPos * SCALE, yPos * SCALE, SCALE, SCALE);
         }, 0);
