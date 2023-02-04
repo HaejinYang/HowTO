@@ -3,13 +3,17 @@ app!.innerHTML = "hello";
 
 /*
     우선 순위 큐는 각 데이터마다 우선순위가 정해져 있고, 큐는 우선순위가 가장 높은 데이터만을 바라보고 있는 자료구조이다.
-    C++ STL의 메소드를 참고해서 메소드를 정했다.
+    C++ STL의 메소드를 참고해서 메소드를 정했다. top, empty, size, push, pop
+    push O(1)
+    pop O(N)
+    top O(N)
+    힙 구조를 응용하지 않아서 시간복잡도가 좋지 않지만, 그래도 간단히 써먹긴 좋아보인다.
  */
 
 type CompareFn<T> = (lhs: T, rhs: T) => boolean;
 class PriorityQueue<T, Compare extends CompareFn<T>> {
-    private data: T[];
-    private compare: Compare;
+    private readonly data: T[];
+    private readonly compare: Compare;
     constructor(compare: Compare) {
         this.data = [];
         this.compare = compare;
