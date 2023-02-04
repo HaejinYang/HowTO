@@ -7,7 +7,7 @@ class PriorityQueue {
         this.compare = compare;
     }
     top() {
-        return this.data.reduce((acc, current, index, arr) => {
+        return this.data.reduce((acc, current) => {
             if (this.compare(acc, current)) {
                 return acc;
             }
@@ -28,7 +28,6 @@ class PriorityQueue {
     pop() {
         const data = this.top();
         const index = this.data.findIndex((target) => target === data);
-        ;
         if (index !== -1) {
             this.data.splice(index, 1);
         }

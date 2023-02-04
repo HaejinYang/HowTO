@@ -6,17 +6,17 @@ app!.innerHTML = "hello";
     C++ STL의 메소드를 참고해서 메소드를 정했다.
  */
 
-type Compare = (lhs: number, rhs: number) => boolean;
-class PriorityQueue {
-    private data: number[];
+type CompareFn<T> = (lhs: T, rhs: T) => boolean;
+class PriorityQueue<T, Compare extends CompareFn<T>> {
+    private data: T[];
     private compare: Compare;
     constructor(compare: Compare) {
         this.data = [];
         this.compare = compare;
     }
 
-    top(): number {
-        return this.data.reduce((acc, current, index, arr) => {
+    top(): T {
+        return this.data.reduce((acc, current) => {
             if(this.compare(acc, current)) {
                 return acc;
             } else {
@@ -33,13 +33,13 @@ class PriorityQueue {
         return this.data.length;
     }
 
-    push(data: number) {
+    push(data: T) {
         this.data.push(data);
     }
 
     pop (): void {
         const data = this.top();
-        const index = this.data.findIndex((target) => target === data;);
+        const index = this.data.findIndex((target) => target === data);
         if(index !== -1) {
             this.data.splice(index, 1);
         }
@@ -57,11 +57,11 @@ class PriorityQueue {
 };
 
 console.log("less");
-const less: Compare = (lhs: number, rhs: number) => {
+const less: CompareFn<number> = (lhs: number, rhs: number) => {
     return lhs < rhs;
 };
 
-const lessQ = new PriorityQueue(less);
+const lessQ = new PriorityQueue<number, CompareFn<number>>(less);
 
 lessQ.push(10);
 lessQ.push(20);
@@ -80,11 +80,11 @@ lessQ.pop();
 
 console.log("greater");
 
-const greater: Compare = (lhs: number, rhs: number): boolean => {
+const greater: CompareFn<number> = (lhs: number, rhs: number): boolean => {
     return lhs > rhs;
 }
 
-const greaterQ: PriorityQueue = new PriorityQueue(greater);
+const greaterQ: PriorityQueue<number, CompareFn<number>> = new PriorityQueue<number, CompareFn<number>>(greater);
 
 greaterQ.push(10);
 greaterQ.push(50);
